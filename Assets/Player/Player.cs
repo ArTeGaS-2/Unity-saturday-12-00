@@ -4,8 +4,14 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [Header("Швидкість")]
     public float forceMultiplier = 100f; // Множник швидкості
     public float maxSpeed = 10f; // Максимальна швидкість
+
+    [Header("Налаштування камери")]
+    public Camera mainCamera; // Посилання на головну камеру
+    private float cameraDistance = 7; // Висота камери
+    private float cameraOffset = 1; // Зсув
 
     private Rigidbody rb; // Фізичний компонент
     private void Start()
