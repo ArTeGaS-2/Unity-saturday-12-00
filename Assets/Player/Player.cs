@@ -36,5 +36,9 @@ public class Player : MonoBehaviour
                 rb.velocity, // Те що обмежуємо
                 maxSpeed); // Те наскільки обмежуємо
         }
+        mainCamera.transform.position = new Vector3(
+            transform.position.x, // Положення по X
+            transform.position.y + cameraDistance, // Висота з модом
+            transform.position.z - cameraOffset); // Віступ назад
     }
 }
