@@ -12,6 +12,7 @@ public class Score : MonoBehaviour
     private int scoreCounter = 0;
     private void Start()
     {
+        Instance = this;
         scoreText.text = $"Зібрано: {scoreCounter}";
     }
     public void UpdateScore()
@@ -19,5 +20,4 @@ public class Score : MonoBehaviour
         scoreCounter++;
         scoreText.text = $"Зібрано: {scoreCounter}";
     }
-
 }

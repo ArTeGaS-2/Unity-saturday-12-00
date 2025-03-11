@@ -6,6 +6,7 @@ public class MicroOrg : MonoBehaviour
 {
     private void OnCollisionEnter(Collision collision)
     {
+        Score.Instance.UpdateScore();
         Destroy(gameObject);
     }
 }

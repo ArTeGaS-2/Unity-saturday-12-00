@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public static Player Instance;
+
     [Header("Швидкість")]
     public float forceMultiplier = 100f; // Множник швидкості
     public float maxSpeed = 10f; // Максимальна швидкість
@@ -14,9 +16,21 @@ public class Player : MonoBehaviour
     private float cameraOffset = 1; // Зсув
 
     private Rigidbody rb; // Фізичний компонент
+
+    public Vector3 scaleMod; // Модифікатор розміру
+    public Vector3 currentScale; // Поточний розмір
+
+    public float divider = 2f; // Ділитель/Множник
+    private void Awake()
+    {
+        Instance = this;
+    }
     private void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>(); // Фізичний компонент
+
+        currentScale = transform.localScale; // Поточний розмір на початку
+        scaleMod = transform.localScale / divider; // Модифікатор розміру
     }
     private void Update()
     {

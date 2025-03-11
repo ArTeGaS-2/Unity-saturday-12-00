@@ -3,7 +3,12 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Danger
+  - Enemy
+  - MicroOrg
+  - Structure
+  - Ground
   layers:
   - Default
   - TransparentFX
@@ -11,12 +16,12 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Danger
+  - Enemy
+  - MicroOrg
+  - Structure
+  - Ground
+  - Player
   - 
   - 
   - 

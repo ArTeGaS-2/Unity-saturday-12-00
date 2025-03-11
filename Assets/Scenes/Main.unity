@@ -274,6 +274,9 @@ MonoBehaviour:
   forceMultiplier: 2500
   maxSpeed: 10
   mainCamera: {fileID: 489822941}
+  scaleMod: {x: 0, y: 0, z: 0}
+  currentScale: {x: 0, y: 0, z: 0}
+  divider: 2
 --- !u!1 &274772673
 GameObject:
   m_ObjectHideFlags: 0
@@ -1452,6 +1455,7 @@ GameObject:
   - component: {fileID: 1522500864}
   - component: {fileID: 1522500863}
   - component: {fileID: 1522500862}
+  - component: {fileID: 1522500866}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1542,6 +1546,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1522500866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1522500861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0bd738afd814b4468841853231440d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreText: {fileID: 816276773}
 --- !u!1 &1600731373 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1349917619370994209, guid: 3bc96167206b4874cbadd1a2e4bc1677,
