@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     public Camera mainCamera; // Посилання на головну камеру
     private float cameraDistance = 7; // Висота камери
     private float cameraOffset = 1; // Зсув
+    public float cameraScaleMod = 0f; // Додаткова відстань камери
 
     private Rigidbody rb; // Фізичний компонент
 
@@ -32,6 +33,15 @@ public class Player : MonoBehaviour
         currentScale = transform.localScale; // Поточний розмір на початку
         scaleMod = transform.localScale / divider; // Модифікатор розміру
     }
+    public void AddCameraDistance()
+    {
+        cameraDistance += cameraScaleMod;
+    }
+    public void AddSize()
+    {
+        currentScale = currentScale + scaleMod;
+        transform.localScale = currentScale;
+    }
     private void Update()
     {
         Vector3 moveInput = new Vector3( // Набір з 3 координат
@@ -41,6 +51,13 @@ public class Player : MonoBehaviour
 
         if (moveInput.magnitude > 0.1f)
         {
+            // Обертання
+            Quaternion targetRotation = Quaternion.LookRotation(
+                moveInput.normalized);
+            transform.rotation = Quaternion.Slerp(
+                transform.rotation, targetRotation, Time.deltaTime * 5f);
+
+            // Рух
             rb.AddForce(                // Прискорення об'єкта
                 moveInput.normalized * // Вектор руху
                 forceMultiplier *     // Множник швидкості
@@ -54,5 +71,13 @@ public class Player : MonoBehaviour
             transform.position.x, // Положення по X
             transform.position.y + cameraDistance, // Висота з модом
             transform.position.z - cameraOffset); // Віступ назад
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("MicroOrg"))
+        {
+            AddSize();
+            AddCameraDistance();
+        }
     }
 }
