@@ -20,6 +20,7 @@ public class Player : MonoBehaviour
 
     public Vector3 scaleMod; // Модифікатор розміру
     public Vector3 currentScale; // Поточний розмір
+    public Vector3 baseStateScale; // Стан без деформації
 
     public float animTime = 20f; // Швидкість відтворення анімації
     private float forwardScaleMod = 1.3f;
@@ -34,8 +35,10 @@ public class Player : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>(); // Фізичний компонент
 
+        baseStateScale = transform.localScale; // Визначаємо базовий стан
+
         currentScale = transform.localScale; // Поточний розмір на початку
-        scaleMod = transform.localScale / divider; // Модифікатор розміру
+        scaleMod = currentScale / divider; // Модифікатор розміру
         forwardScaleMod = currentScale.z * 1.3f; // Поточне збільшення
         sideScaleMod = currentScale.x * 0.8f; // Поточне зменшення
     }
@@ -47,6 +50,11 @@ public class Player : MonoBehaviour
     {
         currentScale = currentScale + scaleMod;
         transform.localScale = currentScale;
+
+        baseStateScale += scaleMod; // Визначає поточне збільшення
+
+        //forwardScaleMod = currentScale.z * 1.3f; // Поточне збільшення
+        //sideScaleMod = currentScale.x * 0.8f; // Поточне зменшення
     }
 
 
@@ -75,7 +83,14 @@ public class Player : MonoBehaviour
                 rb.velocity, // Те що обмежуємо
                 maxSpeed); // Те наскільки обмежуємо
         }
-        if (rb.velocity.x > 0 || rb.velocity.z > 0)
+        if (Input.GetKey(KeyCode.W) ||
+            Input.GetKey(KeyCode.S) ||
+            Input.GetKey(KeyCode.A) ||
+            Input.GetKey(KeyCode.D) ||
+            Input.GetKey(KeyCode.UpArrow) ||
+            Input.GetKey(KeyCode.DownArrow) ||
+            Input.GetKey(KeyCode.LeftArrow) ||
+            Input.GetKey(KeyCode.RightArrow))
         {
             SlimeMoveAnim();
         }
@@ -116,13 +131,12 @@ public class Player : MonoBehaviour
 
         // Зміна довжини
         float forwardScale = Mathf.Lerp(transform.localScale.z,
-           currentScale.z, (Time.deltaTime * animTime) / 2f);
+           baseStateScale.z, (Time.deltaTime * animTime) / 2f);
         // Зміна ширини
         float sideScale = Mathf.Lerp(transform.localScale.x,
-            currentScale.x, (Time.deltaTime * animTime) / 2f);
+            baseStateScale.x, (Time.deltaTime * animTime) / 2f);
         // Застосування змін
         currentScale = new Vector3(sideScale,
             currentScale.y, forwardScale);
     }
-
 }
