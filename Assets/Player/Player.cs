@@ -53,11 +53,9 @@ public class Player : MonoBehaviour
 
         baseStateScale += scaleMod; // Визначає поточне збільшення
 
-        //forwardScaleMod = currentScale.z * 1.3f; // Поточне збільшення
-        //sideScaleMod = currentScale.x * 0.8f; // Поточне зменшення
+        forwardScaleMod = baseStateScale.z * 1.3f; // Поточне збільшення
+        sideScaleMod = baseStateScale.x * 0.8f; // Поточне зменшення
     }
-
-
     private void Update()
     {
         Vector3 moveInput = new Vector3( // Набір з 3 координат
@@ -111,6 +109,14 @@ public class Player : MonoBehaviour
             AddCameraDistance();
         }
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("MicroOrg"))
+        {
+            AddSize();
+            AddCameraDistance();
+        }
+    }
     private void SlimeMoveAnim()
     {
         // Анімація руху
@@ -124,6 +130,7 @@ public class Player : MonoBehaviour
         // Застосування змін
         currentScale = new Vector3(sideScale,
             currentScale.y, forwardScale);
+        transform.localScale = currentScale;
     }
     private void SlimeStopAnim()
     {
@@ -138,5 +145,6 @@ public class Player : MonoBehaviour
         // Застосування змін
         currentScale = new Vector3(sideScale,
             currentScale.y, forwardScale);
+        transform.localScale = currentScale;
     }
 }

@@ -9,4 +9,9 @@ public class MicroOrg : MonoBehaviour
         Score.Instance.UpdateScore();
         Destroy(gameObject);
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        Score.Instance.UpdateScore();
+        Destroy(gameObject);
+    }
 }
