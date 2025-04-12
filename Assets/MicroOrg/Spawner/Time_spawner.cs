@@ -6,12 +6,11 @@ public class Time_spawner : MonoBehaviour
 {
     public List<GameObject> prefabs; // Шаблони об'єктів
 
-    public float diametr = 5f;
+    public float diametr = 5f; // Діаметр спавну від центру
     public float delay = 1f; // Інтервал між спавном
 
-    private float x_Pos;
-    private float z_Pos;
-
+    private float x_Pos; // Контейнер для координати X
+    private float z_Pos; // Контейнер для координати Z
     private void Start()
     {
         StartCoroutine(spawnCreature());
