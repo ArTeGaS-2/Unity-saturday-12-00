@@ -21,7 +21,7 @@ public class DynamicDanger : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody>(); // Доступ до фізики
-        // StartCoroutine(RotateDynamicDanger());
+        StartCoroutine(RotateDynamicDanger());
     }
     private void Update()
     {
@@ -32,7 +32,7 @@ public class DynamicDanger : MonoBehaviour
     {
         while(true)
         {
-            yield return new WaitForSeconds(anglePerIteration);
+            yield return new WaitForSeconds(needToGo);
             Vector3 currentEulerAngle = transform.rotation.eulerAngles;
             currentEulerAngle.y += anglePerIteration;
             transform.rotation = Quaternion.Euler(currentEulerAngle);

@@ -6,12 +6,18 @@ public class MicroOrg : MonoBehaviour
 {
     private void OnCollisionEnter(Collision collision)
     {
-        Score.Instance.UpdateScore();
-        Destroy(gameObject);
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            Score.Instance.UpdateScore();
+            Destroy(gameObject);
+        }
     }
     private void OnTriggerEnter(Collider other)
     {
-        Score.Instance.UpdateScore();
-        Destroy(gameObject);
+        if (other.gameObject.CompareTag("Player"))
+        {
+            Score.Instance.UpdateScore();
+            Destroy(gameObject);
+        }
     }
 }

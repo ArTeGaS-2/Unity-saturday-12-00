@@ -7,6 +7,10 @@ public class DangerObj : MonoBehaviour
 {
     private void OnCollisionEnter(Collision collision)
     {
-        SceneManager.LoadScene(0);
+        if(collision.gameObject.CompareTag("Player"))
+        {
+             SceneManager.LoadScene(0);
+        }
+       
     }
 }
