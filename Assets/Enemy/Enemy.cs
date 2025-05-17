@@ -12,7 +12,8 @@ public class Enemy : MonoBehaviour
     {
         if (GameObject.Find("Player"))
         {
-            // «находимо персонажа гравц€ по назв≥ ≥ отримуЇмо позиц≥ю
+            // «находимо персонажа гравц€ по назв≥ ≥
+            // отримуЇмо позиц≥ю
             target = GameObject.Find(
                 "Player").GetComponent<Transform>();
         }
