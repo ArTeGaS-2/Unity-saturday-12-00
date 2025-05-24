@@ -5,7 +5,6 @@ public class PauseMenu : MonoBehaviour
 {
     public static PauseMenu Instance; // Один екземпляр скрипта на гру
     public GameObject pauseMenuObject; // Вікно паузи з усіма елементами
-
     private void Awake()
     {
         Instance = this; // Прив'язка скрипта зі сцени до змінної

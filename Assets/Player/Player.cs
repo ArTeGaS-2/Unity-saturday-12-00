@@ -27,6 +27,8 @@ public class Player : MonoBehaviour
     private float sideScaleMod = 0.8f;
 
     public float divider = 2f; // Ділитель/Множник
+
+    private Projectile projectileScript;
     private void Awake()
     {
         Instance = this;
@@ -34,6 +36,8 @@ public class Player : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody>(); // Фізичний компонент
+
+        projectileScript = GetComponent<Projectile>();
 
         baseStateScale = transform.localScale; // Визначаємо базовий стан
 
@@ -96,6 +100,12 @@ public class Player : MonoBehaviour
         {
             SlimeStopAnim();
         }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            projectileScript.ShootProjectileForward();
+        }
+
         mainCamera.transform.position = new Vector3(
             transform.position.x, // Положення по X
             transform.position.y + cameraDistance, // Висота з модом
